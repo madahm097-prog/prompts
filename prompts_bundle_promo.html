@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d0d1a;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0d0d1a 0%, #1a1a3e 40%, #0f1a3a 100%);
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(129,140,248,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(129,140,248,0.18);
+    border: 1px solid rgba(129,140,248,0.4);
+    color: #a5b4fc;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 6px 20px;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .gradient-word {
+    background: linear-gradient(90deg, #818cf8, #c084fc, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #818cf8;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 30px rgba(129,140,248,0.35);
+    margin-bottom: 1rem;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(129,140,248,0.5);
+  }
+
+  .price-line {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  .price-line strong {
+    color: #818cf8;
+    font-size: 1.2rem;
+  }
+
+  .section {
+    padding: 2.5rem 1.5rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #e2e8f0;
+  }
+
+  .problems {
+    background: rgba(129,140,248,0.06);
+    border-top: 1px solid rgba(129,140,248,0.12);
+    border-bottom: 1px solid rgba(129,140,248,0.12);
+    padding: 2rem 1.5rem;
+  }
+
+  .problem-text {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #94a3b8;
+    margin-bottom: 0.6rem;
+    line-height: 1.7;
+  }
+
+  .problem-text span {
+    color: #c084fc;
+    font-weight: 600;
+  }
+
+  .answer {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #818cf8;
+    margin-top: 1rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(129,140,248,0.18);
+    border-radius: 14px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(129,140,248,0.45);
+    background: rgba(129,140,248,0.08);
+  }
+
+  .feature-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+  }
+
+  .feature-desc {
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  .benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+    color: #e2e8f0;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(129,140,248,0.12);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+  }
+
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  .ai-tools {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .ai-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(129,140,248,0.25);
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #a5b4fc;
+  }
+
+  .final-cta {
+    background: linear-gradient(135deg, #1a1a3e, #0f1a3a);
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-top: 1px solid rgba(129,140,248,0.2);
+  }
+
+  .final-cta-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    color: #e2e8f0;
+  }
+
+  .final-cta-sub {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(129,140,248,0.3), transparent);
+    margin: 0;
+  }
+
+  .copy-paste {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .step-pill {
+    background: rgba(129,140,248,0.1);
+    border: 1px solid rgba(129,140,248,0.25);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.88rem;
+    color: #818cf8;
+    font-weight: 600;
+  }
+
+  .step-pill span {
+    color: #c084fc;
+    margin-left: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🤖 AI PROMPTS BUNDLE</div>
+  <h1 class="hero-title">
+    حزمة برومبتس<br>
+    <span class="gradient-word">التسويق بالذكاء الاصطناعي</span>
+  </h1>
+  <p class="hero-sub">لأصحاب المشاريع الصغيرة — بالعربية والإنجليزية</p>
+
+  <div class="stats-row">
+    <div class="stat">
+      <span class="stat-num">18+</span>
+      <span class="stat-label">برومبت جاهز</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">6</span>
+      <span class="stat-label">فئات تسويقية</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">لغة</span>
+    </div>
+  </div>
+
+  <div>
+    <a href="https://simpletemplestore.gumroad.com/l/prompts-bundle-ar" class="cta-btn">
+      🚀 احصل على الحزمة الآن
+    </a>
+    <div class="price-line">السعر: <strong>9$ فقط</strong> — دفعة واحدة، ملكية كاملة</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<div class="problems">
+  <div class="section">
+    <p class="problem-text">هل تضيع <span>ساعات طويلة</span> في كتابة بوستات وإعلانات لمشروعك؟</p>
+    <p class="problem-text">هل تجلس أمام الشاشة ولا تعرف من أين تبدأ <span>كتابة المحتوى التسويقي؟</span></p>
+    <p class="problem-text">أنت لست وحدك — وهذه الحزمة <span>تحل مشكلتك في دقائق!</span></p>
+    <p class="answer">⬇ فقط انسخ، الصق، واحصل على نتائج فورية</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<div class="section">
+  <h2 class="section-title">📦 ماذا ستحصل عليه؟</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">📱</span>
+      <div class="feature-title">بوستات سوشيال ميديا</div>
+      <div class="feature-desc">محتوى جاهز لإنستغرام وفيسبوك</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">✉️</span>
+      <div class="feature-title">رسائل بريد إلكتروني</div>
+      <div class="feature-desc">قوالب إيميل مقنعة ومحترفة</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎯</span>
+      <div class="feature-title">إعلانات مدفوعة</div>
+      <div class="feature-desc">نصوص إعلانات فيسبوك وجوجل</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛍️</span>
+      <div class="feature-title">أوصاف المنتجات</div>
+      <div class="feature-desc">وصف احترافي يقنع ويبيع</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⭐</span>
+      <div class="feature-title">ردود على العملاء</div>
+      <div class="feature-desc">تعامل احترافي مع كل موقف</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📈</span>
+      <div class="feature-title">استراتيجية النمو</div>
+      <div class="feature-desc">برومبتس لتطوير مشروعك</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BENEFITS -->
+<div class="section">
+  <h2 class="section-title">✅ لماذا هذه الحزمة؟</h2>
+  <ul class="benefits-list">
+    <li>
+      <div class="check-icon">✓</div>
+      أكثر من 18 برومبت جاهز للاستخدام الفوري — بدون تفكير
+    </li>
+    <li>
+      <div class="check-icon">✓</div>
+      باللغتين العربية والإنجليزية — نسختين في حزمة واحدة
+    </li>
+    <li>
+      <div class="check-icon">✓</div>
+      لا تحتاج أي خبرة تقنية — فقط انسخ والصق!
+    </li>
+    <li>
+      <div class="check-icon">✓</div>
+      يعمل مع أشهر أدوات الذكاء الاصطناعي المجانية
+    </li>
+    <li>
+      <div class="check-icon">✓</div>
+      نتائج فورية وجاهزة للنشر مباشرة
+    </li>
+  </ul>
+
+  <div style="margin-top: 1.5rem; text-align: center;">
+    <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 0.8rem;">يعمل مع هذه الأدوات المجانية:</p>
+    <div class="ai-tools">
+      <span class="ai-badge">Claude</span>
+      <span class="ai-badge">ChatGPT</span>
+      <span class="ai-badge">Gemini</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2 class="section-title">⚡ كيف يعمل؟</h2>
+  <div class="copy-paste">
+    <div class="step-pill"><span>1.</span> اختر البرومبت</div>
+    <div class="step-pill"><span>2.</span> انسخه</div>
+    <div class="step-pill"><span>3.</span> الصقه في الذكاء الاصطناعي</div>
+    <div class="step-pill"><span>4.</span> احصل على نتائج فورية ✓</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-title">جاهز تبدأ بنتائج احترافية؟</div>
+  <div class="final-cta-sub">انضم لأصحاب المشاريع الذكيين الذين يوفرون وقتهم كل يوم</div>
+  <a href="https://simpletemplestore.gumroad.com/l/prompts-bundle-ar" class="cta-btn">
+    🎯 احصل على الحزمة — 9$ فقط
+  </a>
+  <div style="margin-top: 1rem; color: #64748b; font-size: 0.8rem;">
+    simpletemplestore.gumroad.com/l/prompts-bundle-ar
+  </div>
+</div>
+
+</body>
+</html>
